@@ -1,0 +1,74 @@
+{
+  "dataset": {
+    "name": "Breast Cancer Wisconsin (Diagnostic)",
+    "source": "UCI ML Repository dataset via sklearn.datasets.load_breast_cancer",
+    "rows": 569,
+    "features": 30,
+    "target_names": [
+      "malignant",
+      "benign"
+    ],
+    "export_path": "C:\\AI-Based Patient Risk Stratification system\\backend\\data\\breast_cancer_dataset.csv"
+  },
+  "folds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "models": [
+    {
+      "name": "Logistic Regression",
+      "accuracy_by_fold": [
+        0.9737,
+        0.9474,
+        0.9649,
+        0.9912,
+        0.9912
+      ],
+      "mean_metrics": {
+        "accuracy": 0.9737,
+        "precision": 0.9683,
+        "recall": 0.9916,
+        "f1_score": 0.9794,
+        "roc_auc": 0.9953
+      }
+    },
+    {
+      "name": "Gradient Boosting",
+      "accuracy_by_fold": [
+        0.9561,
+        0.9035,
+        0.9561,
+        0.9561,
+        0.9735
+      ],
+      "mean_metrics": {
+        "accuracy": 0.9491,
+        "precision": 0.9471,
+        "recall": 0.9748,
+        "f1_score": 0.9602,
+        "roc_auc": 0.9927
+      }
+    },
+    {
+      "name": "Random Forest",
+      "accuracy_by_fold": [
+        0.9737,
+        0.9474,
+        0.9649,
+        0.9561,
+        0.9646
+      ],
+      "mean_metrics": {
+        "accuracy": 0.9613,
+        "precision": 0.9679,
+        "recall": 0.972,
+        "f1_score": 0.9693,
+        "roc_auc": 0.9899
+      }
+    }
+  ],
+  "generated_at": "2026-03-06T07:38:48.712411+00:00"
+}

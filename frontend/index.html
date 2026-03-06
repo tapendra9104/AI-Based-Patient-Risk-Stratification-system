@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Risk Stratification Dashboard</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306788d'/%3E%3Cpath d='M14 34h10l5-12 8 24 6-14h7' fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css?v=20260306-1" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6"></script>
+  </head>
+  <body>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <main class="container">
+      <header class="page-header">
+        <div>
+          <h1>AI Patient Risk Stratification</h1>
+          <p>Early warning triage view for doctors, emergency teams, and hospital operations.</p>
+        </div>
+        <div class="header-chip">AI + Healthcare Dashboard</div>
+      </header>
+
+      <section class="grid intro-grid">
+        <article class="panel story-panel">
+          <span class="eyebrow">Project Overview</span>
+          <h2>What this project does</h2>
+          <p>
+            This system demonstrates how an AI-assisted hospital workflow can transform raw patient
+            vitals into a risk score, a triage level, explainable top factors, and operational
+            alerts for clinicians.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Risk Scoring</span>
+            <span class="pill">Explainable AI</span>
+            <span class="pill">Audit Logs</span>
+            <span class="pill">Benchmark Metrics</span>
+          </div>
+          <div class="flow-strip" aria-label="Project workflow">
+            <span>Patient Input</span>
+            <span>Validation</span>
+            <span>ML Inference</span>
+            <span>Risk Output</span>
+            <span>Alerting</span>
+          </div>
+          <div class="project-note">
+            <strong>AI use in this project:</strong> the backend trains a machine learning model,
+            predicts patient risk, highlights the strongest contributing factors, and compares
+            model quality on a real benchmark dataset.
+          </div>
+        </article>
+
+        <article class="panel visual-panel">
+          <img
+            class="hero-visual"
+            src="./assets/ai-triage-dashboard.svg"
+            alt="Illustration of an AI-assisted hospital dashboard with patient monitoring and model insights"
+            loading="eager"
+          />
+        </article>
+      </section>
+
+      <section class="feature-showcase">
+        <article class="panel feature-card">
+          <img
+            class="feature-image"
+            src="./assets/patient-intake-ai.svg"
+            alt="Illustration of AI-driven patient intake and monitoring"
+            loading="lazy"
+          />
+          <h2>AI Intake and Triage</h2>
+          <p>
+            Vital signs, symptoms, and risk indicators are normalized into a structured feature set
+            so the model can classify a patient as low, medium, or high risk.
+          </p>
+        </article>
+
+        <article class="panel feature-card">
+          <img
+            class="feature-image"
+            src="./assets/explainable-ai-factors.svg"
+            alt="Illustration showing AI explainability and top risk factors"
+            loading="lazy"
+          />
+          <h2>Explainable Decision Support</h2>
+          <p>
+            The dashboard does not only show a score. It also surfaces the most important factors
+            that pushed the patient toward a high-risk outcome.
+          </p>
+        </article>
+
+        <article class="panel feature-card">
+          <img
+            class="feature-image"
+            src="./assets/hospital-governance.svg"
+            alt="Illustration of secure hospital governance, audit, and benchmarking"
+            loading="lazy"
+          />
+          <h2>Governance and Quality</h2>
+          <p>
+            Audit logs, model benchmarking, and role-based access make the project feel closer to a
+            real hospital operations dashboard instead of a basic prediction demo.
+          </p>
+        </article>
+      </section>
+
+      <section class="stack-section">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Technology Stack</span>
+            <h2>Which system is used to do what</h2>
+            <p>
+              The dashboard is designed as a professional full-stack workflow: the frontend handles
+              the user experience, the backend handles validation and APIs, the ML layer performs
+              prediction, and the platform layer manages storage, security, and deployment.
+            </p>
+          </div>
+        </div>
+
+        <div class="stack-grid">
+          <article class="panel stack-card">
+            <div class="stack-topline">
+              <span class="stack-icon">UI</span>
+              <span class="stack-meta">Presentation Layer</span>
+            </div>
+            <h3>Frontend Dashboard</h3>
+            <p>
+              Collects patient values, shows prediction results, displays charts, and explains the
+              project in a visual and user-friendly way for doctors and evaluators.
+            </p>
+            <div class="tech-tags">
+              <span>HTML5</span>
+              <span>CSS3</span>
+              <span>JavaScript</span>
+              <span>Chart.js</span>
+              <span>SVG</span>
+            </div>
+          </article>
+
+          <article class="panel stack-card">
+            <div class="stack-topline">
+              <span class="stack-icon">API</span>
+              <span class="stack-meta">Application Layer</span>
+            </div>
+            <h3>Backend Services</h3>
+            <p>
+              Receives dashboard requests, validates patient data, applies access control, returns
+              JSON responses, and coordinates prediction, storage, and audit events.
+            </p>
+            <div class="tech-tags">
+              <span>Python</span>
+              <span>Flask</span>
+              <span>REST API</span>
+              <span>CORS</span>
+            </div>
+          </article>
+
+          <article class="panel stack-card">
+            <div class="stack-topline">
+              <span class="stack-icon">ML</span>
+              <span class="stack-meta">AI Engine</span>
+            </div>
+            <h3>Machine Learning Risk Model</h3>
+            <p>
+              Trains and serves the patient-risk model, generates a risk score, classifies the
+              patient level, and produces the explainable factors shown in the dashboard.
+            </p>
+            <div class="tech-tags">
+              <span>scikit-learn</span>
+              <span>Random Forest</span>
+              <span>NumPy</span>
+              <span>Pandas</span>
+            </div>
+          </article>
+
+          <article class="panel stack-card">
+            <div class="stack-topline">
+              <span class="stack-icon">DB</span>
+              <span class="stack-meta">Data and Governance</span>
+            </div>
+            <h3>Storage, Security, and Audit</h3>
+            <p>
+              Saves patient assessments, keeps audit trails, supports API-key security, and helps
+              the project feel closer to a hospital operations platform.
+            </p>
+            <div class="tech-tags">
+              <span>SQLite</span>
+              <span>SQLAlchemy</span>
+              <span>API Keys</span>
+              <span>Audit Logs</span>
+            </div>
+          </article>
+
+          <article class="panel stack-card">
+            <div class="stack-topline">
+              <span class="stack-icon">OPS</span>
+              <span class="stack-meta">Deployment Layer</span>
+            </div>
+            <h3>Runtime and Deployment</h3>
+            <p>
+              Supports local execution and containerized deployment so the system can be demonstrated
+              consistently in development, presentations, and technical reviews.
+            </p>
+            <div class="tech-tags">
+              <span>Docker Compose</span>
+              <span>Environment Config</span>
+              <span>Health Checks</span>
+            </div>
+          </article>
+        </div>
+
+        <article class="panel responsibility-board">
+          <div class="section-head compact-head">
+            <div>
+              <span class="eyebrow">System Responsibilities</span>
+              <h2>End-to-end project flow</h2>
+            </div>
+          </div>
+
+          <div class="responsibility-list">
+            <div class="responsibility-row">
+              <div class="responsibility-label">Step 1</div>
+              <div class="responsibility-copy">
+                <strong>Patient Input:</strong> the frontend form captures vitals, conditions, and
+                clinical indicators from the user.
+              </div>
+            </div>
+            <div class="responsibility-row">
+              <div class="responsibility-label">Step 2</div>
+              <div class="responsibility-copy">
+                <strong>Validation:</strong> the Python backend checks types, ranges, structure, and
+                request access before processing.
+              </div>
+            </div>
+            <div class="responsibility-row">
+              <div class="responsibility-label">Step 3</div>
+              <div class="responsibility-copy">
+                <strong>AI Prediction:</strong> the scikit-learn model calculates a patient risk
+                score and classifies the case into low, medium, or high risk.
+              </div>
+            </div>
+            <div class="responsibility-row">
+              <div class="responsibility-label">Step 4</div>
+              <div class="responsibility-copy">
+                <strong>Explainability:</strong> the system identifies the most influential risk
+                factors and returns them with the prediction.
+              </div>
+            </div>
+            <div class="responsibility-row">
+              <div class="responsibility-label">Step 5</div>
+              <div class="responsibility-copy">
+                <strong>Persistence and Governance:</strong> the assessment is stored, recent history
+                is updated, and audit logs keep track of critical actions.
+              </div>
+            </div>
+            <div class="responsibility-row">
+              <div class="responsibility-label">Step 6</div>
+              <div class="responsibility-copy">
+                <strong>Visualization:</strong> the dashboard refreshes charts, tables, benchmark
+                metrics, and the latest result card for a professional presentation.
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>API Connection</h2>
+          <div class="connection-grid">
+            <div class="api-url-wrap">
+              <label for="apiUrl">Base URL</label>
+              <input id="apiUrl" type="text" value="http://127.0.0.1:5000/api" />
+            </div>
+            <div class="api-url-wrap">
+              <label for="apiKey">API Key</label>
+              <input id="apiKey" type="text" value="demo-admin-key" />
+            </div>
+          </div>
+        </div>
+        <p class="helper-text">
+          Local demo keys: demo-admin-key, demo-clinician-key, demo-analyst-key, demo-ingest-key.
+        </p>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>New Patient Assessment</h2>
+          <form id="assessmentForm">
+            <div class="form-grid">
+              <label>Patient ID <input name="patient_id" required value="P-2041" /></label>
+              <label>Age <input name="age" type="number" required value="67" /></label>
+              <label>Systolic BP <input name="systolic_bp" type="number" required value="160" /></label>
+              <label>Diastolic BP <input name="diastolic_bp" type="number" required value="98" /></label>
+              <label>Heart Rate <input name="heart_rate" type="number" required value="112" /></label>
+              <label>Oxygen Level (%) <input name="oxygen_level" type="number" step="0.1" required value="90" /></label>
+              <label>Cholesterol <input name="cholesterol" type="number" required value="240" /></label>
+              <label>Respiratory Rate <input name="respiratory_rate" type="number" required value="24" /></label>
+              <label>Temperature (C) <input name="temperature" type="number" step="0.1" required value="38.2" /></label>
+              <label>Lactate <input name="lactate" type="number" step="0.1" required value="2.9" /></label>
+              <label>Sepsis Indicator (0-1) <input name="sepsis_indicator" type="number" step="0.01" min="0" max="1" required value="0.7" /></label>
+              <label>Diabetes
+                <select name="diabetes">
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </label>
+              <label>Prior Heart Disease
+                <select name="prior_heart_disease">
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </label>
+              <label>Chronic Kidney Disease
+                <select name="chronic_kidney_disease">
+                  <option value="false">No</option>
+                  <option value="true">Yes</option>
+                </select>
+              </label>
+              <label>Smoker
+                <select name="smoker">
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </label>
+            </div>
+            <button type="submit">Run Risk Prediction</button>
+          </form>
+        </article>
+
+        <article class="panel" id="latestResult">
+          <h2>Latest Prediction</h2>
+          <div class="placeholder">Submit a patient record to view risk output.</div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>Risk Distribution (Recent)</h2>
+          <canvas id="riskChart"></canvas>
+        </article>
+        <article class="panel">
+          <h2>Recent Assessments</h2>
+          <div class="table-wrap">
+            <table id="historyTable">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Patient</th>
+                  <th>Score</th>
+                  <th>Level</th>
+                  <th>ICU 24h</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>Model Accuracy Graph (Real Dataset)</h2>
+          <canvas id="accuracyChart"></canvas>
+        </article>
+        <article class="panel">
+          <h2>Real Dataset Model Benchmark</h2>
+          <p id="datasetMeta" class="placeholder">Loading benchmark...</p>
+          <div class="table-wrap">
+            <table id="benchmarkTable">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Accuracy</th>
+                  <th>Precision</th>
+                  <th>Recall</th>
+                  <th>F1</th>
+                  <th>ROC-AUC</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+    <script src="./app.js?v=20260306-2"></script>
+  </body>
+</html>

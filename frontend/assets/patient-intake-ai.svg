@@ -1,0 +1,27 @@
+<svg width="420" height="260" viewBox="0 0 420 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="intakeBg" x1="36" y1="24" x2="350" y2="238" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EBFFF8"/>
+      <stop offset="1" stop-color="#EAF1FB"/>
+    </linearGradient>
+    <linearGradient id="intakeAccent" x1="80" y1="66" x2="301" y2="173" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F9C8C"/>
+      <stop offset="1" stop-color="#0B4F8A"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="260" rx="24" fill="url(#intakeBg)"/>
+  <rect x="42" y="39" width="150" height="182" rx="20" fill="white"/>
+  <circle cx="117" cy="88" r="28" fill="#DBF7F1"/>
+  <circle cx="117" cy="80" r="16" fill="#0E6F83"/>
+  <path d="M83 136C90 114 102 104 117 104C132 104 144 114 151 136" fill="#0E6F83"/>
+  <rect x="73" y="156" width="88" height="12" rx="6" fill="#0F9C8C" fill-opacity="0.2"/>
+  <rect x="73" y="178" width="64" height="12" rx="6" fill="#0B4F8A" fill-opacity="0.14"/>
+  <rect x="220" y="52" width="158" height="70" rx="20" fill="url(#intakeAccent)"/>
+  <text x="246" y="86" fill="white" font-size="20" font-family="Arial, Helvetica, sans-serif" font-weight="700">AI Intake</text>
+  <text x="246" y="108" fill="white" font-size="12" font-family="Arial, Helvetica, sans-serif">Vitals + risk indicators</text>
+  <rect x="220" y="139" width="158" height="82" rx="20" fill="white"/>
+  <path d="M242 185H267L282 154L304 205L322 173H352" stroke="#0F9C8C" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="246" cy="69" r="7" fill="#7FF0D5"/>
+  <circle cx="266" cy="69" r="7" fill="#7FF0D5" fill-opacity="0.7"/>
+  <circle cx="286" cy="69" r="7" fill="#7FF0D5" fill-opacity="0.4"/>
+</svg>
