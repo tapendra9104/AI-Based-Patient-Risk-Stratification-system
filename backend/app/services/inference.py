@@ -5,7 +5,7 @@ from threading import Lock
 from typing import Mapping
 
 import joblib
-import pandas as pd
+import numpy as np
 
 from .preprocessing import FEATURE_ORDER
 from .training import train_and_save_model
@@ -140,8 +140,8 @@ def predict_patient_risk(features: dict[str, float], config: Mapping[str, object
     feature_order = artifact["feature_order"]
     thresholds = artifact["thresholds"]
 
-    frame = pd.DataFrame([{name: features[name] for name in feature_order}])
-    risk_score = float(model.predict_proba(frame)[0][1])
+    feature_vector = np.array([[features[name] for name in feature_order]], dtype=float)
+    risk_score = float(model.predict_proba(feature_vector)[0][1])
     risk_level = classify_risk(risk_score, thresholds)
 
     return {

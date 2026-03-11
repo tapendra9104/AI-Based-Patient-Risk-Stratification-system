@@ -1,9 +1,8 @@
 flask
 flask-cors
 flask-sqlalchemy
+gunicorn
 joblib
 numpy
 requests
 scikit-learn
-gunicorn
-pytest

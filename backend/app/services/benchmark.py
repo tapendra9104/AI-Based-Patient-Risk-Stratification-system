@@ -1,12 +1,12 @@
 from __future__ import annotations
 
+import csv
 import json
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Mapping
 
 import numpy as np
-import pandas as pd
 from sklearn.datasets import load_breast_cancer
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
@@ -55,6 +55,24 @@ def _safe_roc_auc(y_true: np.ndarray, y_score: np.ndarray) -> float:
         return 0.5
 
 
+def _write_dataset_export(
+    dataset_export_path: Path,
+    x: np.ndarray,
+    y: np.ndarray,
+    feature_names: list[str],
+    target_names: list[str],
+) -> str:
+    dataset_export_path.parent.mkdir(parents=True, exist_ok=True)
+    with dataset_export_path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle)
+        writer.writerow([*feature_names, "target", "target_label"])
+        for row, target in zip(x, y):
+            target_value = int(target)
+            target_label = target_names[target_value] if target_value < len(target_names) else str(target_value)
+            writer.writerow([*row.tolist(), target_value, target_label])
+    return str(dataset_export_path)
+
+
 def run_real_dataset_benchmark(
     benchmark_path: str | Path,
     dataset_export_path: str | Path,
@@ -62,21 +80,24 @@ def run_real_dataset_benchmark(
 ) -> dict:
     benchmark_path = Path(benchmark_path)
     dataset_export_path = Path(dataset_export_path)
-    benchmark_path.parent.mkdir(parents=True, exist_ok=True)
-    dataset_export_path.parent.mkdir(parents=True, exist_ok=True)
 
-    dataset = load_breast_cancer(as_frame=True)
-    x = dataset.data.copy()
-    y = dataset.target.copy()
-
-    export_frame = x.copy()
-    export_frame["target"] = y
+    dataset = load_breast_cancer(as_frame=False)
+    x = dataset.data
+    y = dataset.target
+    feature_names = list(dataset.feature_names)
     dataset_target_names = list(dataset.target_names)
-    if len(dataset_target_names) == 2:
-        export_frame["target_label"] = np.where(
-            export_frame["target"] == 1, dataset_target_names[1], dataset_target_names[0]
+
+    export_path_value = str(dataset_export_path)
+    try:
+        export_path_value = _write_dataset_export(
+            dataset_export_path,
+            x,
+            y,
+            feature_names,
+            dataset_target_names,
         )
-    export_frame.to_csv(dataset_export_path, index=False)
+    except OSError:
+        export_path_value = "export skipped: filesystem is read-only"
 
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=random_state)
     folds = [fold for fold in range(1, cv.get_n_splits() + 1)]
@@ -90,10 +111,10 @@ def run_real_dataset_benchmark(
         roc_auc_by_fold: list[float] = []
 
         for train_idx, test_idx in cv.split(x, y):
-            x_train = x.iloc[train_idx]
-            y_train = y.iloc[train_idx]
-            x_test = x.iloc[test_idx]
-            y_test = y.iloc[test_idx]
+            x_train = x[train_idx]
+            y_train = y[train_idx]
+            x_test = x[test_idx]
+            y_test = y[test_idx]
 
             model.fit(x_train, y_train)
             y_pred = model.predict(x_test)
@@ -108,7 +129,7 @@ def run_real_dataset_benchmark(
             )
             recall_by_fold.append(_round_metric(recall_score(y_test, y_pred, zero_division=0)))
             f1_by_fold.append(_round_metric(f1_score(y_test, y_pred, zero_division=0)))
-            roc_auc_by_fold.append(_round_metric(_safe_roc_auc(y_test.to_numpy(), y_prob)))
+            roc_auc_by_fold.append(_round_metric(_safe_roc_auc(y_test, y_prob)))
 
         model_summaries.append(
             {
@@ -140,14 +161,18 @@ def run_real_dataset_benchmark(
             "rows": int(x.shape[0]),
             "features": int(x.shape[1]),
             "target_names": dataset_target_names,
-            "export_path": str(dataset_export_path),
+            "export_path": export_path_value,
         },
         "folds": folds,
         "models": model_summaries,
         "generated_at": datetime.now(timezone.utc).isoformat(),
     }
 
-    benchmark_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    try:
+        benchmark_path.parent.mkdir(parents=True, exist_ok=True)
+        benchmark_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    except OSError:
+        pass
     return payload
 
 

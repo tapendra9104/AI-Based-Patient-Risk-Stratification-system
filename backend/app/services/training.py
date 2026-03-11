@@ -5,7 +5,6 @@ from pathlib import Path
 
 import joblib
 import numpy as np
-import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score
@@ -21,7 +20,7 @@ def _logistic(x: np.ndarray) -> np.ndarray:
 
 def generate_synthetic_dataset(
     size: int = 6000, random_state: int = 42
-) -> tuple[pd.DataFrame, pd.Series]:
+) -> tuple[np.ndarray, np.ndarray]:
     rng = np.random.default_rng(random_state)
 
     age = np.clip(rng.normal(52, 17, size), 18, 95)
@@ -69,26 +68,26 @@ def generate_synthetic_dataset(
     risk_prob = np.clip(_logistic((linear_signal - 2.0) / 5.0), 0.01, 0.99)
     outcome = rng.binomial(1, risk_prob, size=size)
 
-    frame = pd.DataFrame(
-        {
-            "age": age,
-            "systolic_bp": systolic_bp,
-            "diastolic_bp": diastolic_bp,
-            "heart_rate": heart_rate,
-            "oxygen_level": oxygen_level,
-            "cholesterol": cholesterol,
-            "respiratory_rate": respiratory_rate,
-            "temperature": temperature,
-            "lactate": lactate,
-            "sepsis_indicator": sepsis_indicator,
-            "stress_level": stress_level,
-            "diabetes": diabetes.astype(float),
-            "prior_heart_disease": prior_heart_disease.astype(float),
-            "chronic_kidney_disease": chronic_kidney_disease.astype(float),
-            "smoker": smoker.astype(float),
-        }
+    frame = np.column_stack(
+        [
+            age,
+            systolic_bp,
+            diastolic_bp,
+            heart_rate,
+            oxygen_level,
+            cholesterol,
+            respiratory_rate,
+            temperature,
+            lactate,
+            sepsis_indicator,
+            stress_level,
+            diabetes.astype(float),
+            prior_heart_disease.astype(float),
+            chronic_kidney_disease.astype(float),
+            smoker.astype(float),
+        ]
     )
-    labels = pd.Series(outcome, name="high_risk_event")
+    labels = outcome.astype(int)
     return frame, labels
 
 

@@ -16,6 +16,15 @@ def _parse_csv(value: str) -> list[str]:
     return [item.strip() for item in value.split(",") if item.strip()]
 
 
+def _default_database_url(base_dir: Path) -> str:
+    configured = os.getenv("DATABASE_URL")
+    if configured:
+        return configured
+    if os.getenv("VERCEL"):
+        return "sqlite:////tmp/patient_risk.db"
+    return f"sqlite:///{base_dir / 'patient_risk.db'}"
+
+
 def _default_api_keys(app_env: str) -> dict[str, dict[str, str]]:
     if app_env == "production":
         return {}
@@ -75,9 +84,7 @@ class Settings:
         return {
             "APP_ENV": app_env,
             "SECRET_KEY": os.getenv("SECRET_KEY", "local-dev-secret-key"),
-            "SQLALCHEMY_DATABASE_URI": os.getenv(
-                "DATABASE_URL", f"sqlite:///{base_dir / 'patient_risk.db'}"
-            ),
+            "SQLALCHEMY_DATABASE_URI": _default_database_url(base_dir),
             "SQLALCHEMY_TRACK_MODIFICATIONS": False,
             "MODEL_PATH": os.getenv(
                 "MODEL_PATH", str(base_dir / "models" / "risk_model.joblib")

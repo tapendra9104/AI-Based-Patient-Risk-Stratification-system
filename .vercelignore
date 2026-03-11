@@ -1,0 +1,8 @@
+.pytest_cache
+__pycache__
+*.out
+*.err
+backend/tests
+backend/.venv
+docker-compose.yml
+backend/Dockerfile
