@@ -12,15 +12,16 @@
   ],
   "routes": [
     {
+      "src": "^/api(?:/(.*))?$",
+      "dest": "/app.py"
+    },
+    {
       "src": "^/$",
       "dest": "/public/index.html"
     },
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/app.py"
+      "src": "^/(.*)$",
+      "dest": "/public/$1"
     }
   ]
 }
