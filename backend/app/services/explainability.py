@@ -12,6 +12,7 @@ BASELINES = {
     "temperature": 37.0,
     "lactate": 1.5,
     "sepsis_indicator": 0.2,
+    "stress_level": 5.0,
     "diabetes": 0.0,
     "prior_heart_disease": 0.0,
     "chronic_kidney_disease": 0.0,
@@ -29,6 +30,7 @@ SCALES = {
     "temperature": 1.0,
     "lactate": 1.0,
     "sepsis_indicator": 0.3,
+    "stress_level": 2.5,
     "diabetes": 1.0,
     "prior_heart_disease": 1.0,
     "chronic_kidney_disease": 1.0,
@@ -68,4 +70,28 @@ def summarize_risk_factors(
         )
 
     rows.sort(key=lambda item: abs(item["impact"]), reverse=True)
+    return rows[:top_n]
+
+
+def summarize_feature_importances(artifact: dict, top_n: int | None = None) -> list[dict]:
+    model = artifact["model"].named_steps["classifier"]
+    importances = model.feature_importances_
+    feature_order = artifact["feature_order"]
+
+    rows = [
+        {
+            "feature": _feature_label(feature_name),
+            "feature_key": feature_name,
+            "importance": round(float(importance), 4),
+            "baseline": round(float(BASELINES[feature_name]), 4),
+            "scale": round(float(SCALES[feature_name]), 4),
+            "direction": (
+                "lower_is_riskier" if feature_name in INVERTED_FEATURES else "higher_is_riskier"
+            ),
+        }
+        for feature_name, importance in zip(feature_order, importances)
+    ]
+    rows.sort(key=lambda item: item["importance"], reverse=True)
+    if top_n is None:
+        return rows
     return rows[:top_n]

@@ -102,8 +102,10 @@ class Settings:
             "AUTH_REQUIRED": _as_bool(os.getenv("AUTH_REQUIRED"), True),
             "API_KEYS": _load_api_keys(app_env),
             "ALLOWED_ORIGINS": allowed_origins or ["http://127.0.0.1:5500"],
-            "MAX_PATIENT_LIST_LIMIT": int(os.getenv("MAX_PATIENT_LIST_LIMIT", "200")),
+            "MAX_PATIENT_LIST_LIMIT": int(os.getenv("MAX_PATIENT_LIST_LIMIT", "1000")),
             "MAX_AUDIT_LOG_LIMIT": int(os.getenv("MAX_AUDIT_LOG_LIMIT", "200")),
+            "MAX_BATCH_ASSESSMENTS": int(os.getenv("MAX_BATCH_ASSESSMENTS", "25")),
+            "MAX_SIMULATION_SCENARIOS": int(os.getenv("MAX_SIMULATION_SCENARIOS", "10")),
             "API_TITLE": "AI Patient Risk Stratification API",
-            "API_VERSION": "2.0.0",
+            "API_VERSION": "2.2.0",
         }

@@ -37,7 +37,7 @@ def _build_models(random_state: int) -> dict[str, Pipeline]:
                         max_depth=10,
                         class_weight="balanced",
                         random_state=random_state,
-                        n_jobs=-1,
+                        n_jobs=1,
                     ),
                 )
             ]

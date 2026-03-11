@@ -7,6 +7,7 @@ from typing import Mapping
 import joblib
 import pandas as pd
 
+from .preprocessing import FEATURE_ORDER
 from .training import train_and_save_model
 
 _MODEL_CACHE: dict | None = None
@@ -20,6 +21,19 @@ def _clamp(value: float, low: float = 0.0, high: float = 1.0) -> float:
 
 def _get_cfg(config: Mapping[str, object], key: str, default: object) -> object:
     return config.get(key, default)
+
+
+def _force_serial_classifier_execution(artifact: dict) -> dict:
+    model = artifact.get("model")
+    classifier = getattr(model, "named_steps", {}).get("classifier")
+    if classifier is not None and hasattr(classifier, "n_jobs"):
+        classifier.n_jobs = 1
+    return artifact
+
+
+def _artifact_requires_refresh(artifact: dict) -> bool:
+    artifact_features = list(artifact.get("feature_order", []))
+    return artifact_features != FEATURE_ORDER
 
 
 def load_artifact(config: Mapping[str, object]) -> dict:
@@ -47,7 +61,18 @@ def load_artifact(config: Mapping[str, object]) -> dict:
                 dataset_size=dataset_size,
             )
 
-        artifact = joblib.load(model_path)
+        artifact = _force_serial_classifier_execution(joblib.load(model_path))
+        if _artifact_requires_refresh(artifact):
+            if app_env == "production":
+                raise RuntimeError("Configured model artifact uses an outdated feature schema")
+            artifact = train_and_save_model(
+                model_path=model_path,
+                random_state=random_state,
+                low_threshold=low_threshold,
+                high_threshold=high_threshold,
+                dataset_size=dataset_size,
+            )
+            artifact = _force_serial_classifier_execution(artifact)
         _MODEL_CACHE = artifact
         _CACHE_PATH = model_path
         return artifact
@@ -67,12 +92,14 @@ def _predict_conditions(features: dict[str, float], risk_score: float) -> dict[s
         + 0.20 * (features["prior_heart_disease"])
         + 0.15 * (features["cholesterol"] / 300)
         + 0.20 * (features["systolic_bp"] / 180)
+        + 0.08 * (features["stress_level"] / 10)
         + 0.10 * (1 - features["oxygen_level"] / 100)
     )
     stroke = _clamp(
         0.30 * risk_score
         + 0.20 * (features["age"] / 90)
         + 0.20 * (features["systolic_bp"] / 190)
+        + 0.05 * (features["stress_level"] / 10)
         + 0.10 * features["smoker"]
     )
     sepsis = _clamp(
@@ -80,6 +107,7 @@ def _predict_conditions(features: dict[str, float], risk_score: float) -> dict[s
         + 0.40 * features["sepsis_indicator"]
         + 0.15 * max(0.0, (features["temperature"] - 37.0) / 4)
         + 0.15 * max(0.0, (features["lactate"] - 1.5) / 5)
+        + 0.05 * (features["stress_level"] / 10)
     )
     diabetic_complication = _clamp(
         0.30 * risk_score
@@ -101,6 +129,7 @@ def _predict_icu_need(features: dict[str, float], risk_score: float) -> bool:
         risk_score >= 0.78
         or features["oxygen_level"] <= 88
         or features["sepsis_indicator"] >= 0.75
+        or features["stress_level"] >= 9.5
         or (features["heart_rate"] >= 130 and features["systolic_bp"] >= 170)
     )
 

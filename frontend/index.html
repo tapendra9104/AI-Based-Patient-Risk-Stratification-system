@@ -14,29 +14,66 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./style.css?v=20260306-1" />
+    <link rel="stylesheet" href="./style.css?v=20260312-12" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6"></script>
   </head>
   <body>
+    <div class="bg-grid"></div>
     <div class="bg-orb orb-1"></div>
     <div class="bg-orb orb-2"></div>
     <main class="container">
-      <header class="page-header">
-        <div>
-          <h1>AI Patient Risk Stratification</h1>
-          <p>Early warning triage view for doctors, emergency teams, and hospital operations.</p>
+      <section class="utility-bar">
+        <div class="utility-brand">
+          <span class="utility-kicker">Clinical Operations Console</span>
+          <strong>AI Patient Risk Stratification Platform</strong>
         </div>
-        <div class="header-chip">AI + Healthcare Dashboard</div>
+        <div class="utility-status">
+          <span id="serviceStatusBadge" class="status-pill status-pending">Service status pending</span>
+          <span id="modelStatusText" class="utility-meta">Model sync not loaded</span>
+        </div>
+      </section>
+
+      <header class="page-header panel hero-panel">
+        <div class="page-header-copy">
+          <h1>AI Patient Risk Stratification</h1>
+          <p>
+            Decision-support workspace for clinicians, operations teams, and quality leads managing
+            patient deterioration risk in real time.
+          </p>
+          <div class="hero-summary">
+            <div class="hero-stat">
+              <span>Clinical Focus</span>
+              <strong>Triage and escalation</strong>
+            </div>
+            <div class="hero-stat">
+              <span>Coverage</span>
+              <strong>Single case, bulk intake, simulation</strong>
+            </div>
+            <div class="hero-stat">
+              <span>Governance</span>
+              <strong>Audit, benchmark, model visibility</strong>
+            </div>
+          </div>
+        </div>
+        <div class="header-side">
+          <div class="header-chip">Hospital Intelligence Layer</div>
+          <p id="liveClockText" class="header-note header-clock">Local time: --</p>
+          <p id="lastRefreshText" class="header-note">Waiting for first backend sync.</p>
+          <div class="connection-pill">
+            <span class="connection-dot"></span>
+            <span id="connectionSummary">Connect the API to activate live operations data.</span>
+          </div>
+        </div>
       </header>
 
       <section class="grid intro-grid">
         <article class="panel story-panel">
           <span class="eyebrow">Project Overview</span>
-          <h2>What this project does</h2>
+          <h2>Clinical intelligence command layer</h2>
           <p>
-            This system demonstrates how an AI-assisted hospital workflow can transform raw patient
-            vitals into a risk score, a triage level, explainable top factors, and operational
-            alerts for clinicians.
+            This interface turns raw patient vitals into structured clinical risk signals, then
+            connects those signals to escalation guidance, throughput visibility, and governance
+            reporting.
           </p>
           <div class="pill-row">
             <span class="pill">Risk Scoring</span>
@@ -58,7 +95,7 @@
           </div>
         </article>
 
-        <article class="panel visual-panel">
+        <article class="panel visual-panel hero-visual-panel">
           <img
             class="hero-visual"
             src="./assets/ai-triage-dashboard.svg"
@@ -66,6 +103,15 @@
             loading="eager"
           />
         </article>
+      </section>
+
+      <section class="section-banner">
+        <span class="eyebrow">Operations Overview</span>
+        <h2>Live risk posture, active queue, and service readiness</h2>
+        <p>
+          Use this top layer as the executive snapshot before moving into individual assessments,
+          batch workflows, or model governance tasks.
+        </p>
       </section>
 
       <section class="feature-showcase">
@@ -272,9 +318,15 @@
         </article>
       </section>
 
-      <section class="panel">
+      <section class="panel connection-panel">
         <div class="panel-head">
-          <h2>API Connection</h2>
+          <div>
+            <h2>Connection and Environment</h2>
+            <p class="panel-subtitle">
+              Configure the backend endpoint and API key, then monitor service readiness from the
+              live status strip.
+            </p>
+          </div>
           <div class="connection-grid">
             <div class="api-url-wrap">
               <label for="apiUrl">Base URL</label>
@@ -291,9 +343,61 @@
         </p>
       </section>
 
+      <section class="summary-grid">
+        <article class="panel metric-card">
+          <span class="metric-label">Assessments</span>
+          <strong id="summaryTotal" class="metric-value">-</strong>
+          <span class="metric-footnote">Recent stored patient evaluations.</span>
+        </article>
+
+        <article class="panel metric-card">
+          <span class="metric-label">High Risk</span>
+          <strong id="summaryHighRisk" class="metric-value">-</strong>
+          <span class="metric-footnote">Cases currently in the high-risk bucket.</span>
+        </article>
+
+        <article class="panel metric-card">
+          <span class="metric-label">ICU Likely</span>
+          <strong id="summaryIcuLikely" class="metric-value">-</strong>
+          <span class="metric-footnote">Assessments flagged for likely ICU need.</span>
+        </article>
+
+        <article class="panel metric-card">
+          <span class="metric-label">Average Score</span>
+          <strong id="summaryAverageRisk" class="metric-value">-</strong>
+          <span class="metric-footnote">Mean modeled risk across the active window.</span>
+        </article>
+
+        <article class="panel summary-panel-wide">
+          <div class="panel-head">
+            <h2>High-Risk Queue</h2>
+            <div class="timeline-toolbar tight-toolbar">
+              <span id="summaryWindowMeta" class="helper-text">Window: last - assessments</span>
+              <button id="exportCsvButton" type="button" class="secondary-button">Export CSV</button>
+            </div>
+          </div>
+          <ul id="recentHighRiskList" class="signal-list">
+            <li class="placeholder">Connect the backend to load the current high-risk queue.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="section-banner">
+        <span class="eyebrow">Clinical Workbench</span>
+        <h2>Assess patients, run bulk workflows, and test likely interventions</h2>
+        <p>
+          The primary workspace combines front-line assessment tools with operational shortcuts so
+          the interface feels like a clinical console, not a disconnected collection of widgets.
+        </p>
+      </section>
+
       <section class="grid">
         <article class="panel">
-          <h2>New Patient Assessment</h2>
+          <h2>Clinical Assessment Workspace</h2>
+          <p class="panel-subtitle">
+            Submit a single patient record to generate triage guidance, flagged abnormalities, and
+            condition-level risk signals.
+          </p>
           <form id="assessmentForm">
             <div class="form-grid">
               <label>Patient ID <input name="patient_id" required value="P-2041" /></label>
@@ -307,6 +411,7 @@
               <label>Temperature (C) <input name="temperature" type="number" step="0.1" required value="38.2" /></label>
               <label>Lactate <input name="lactate" type="number" step="0.1" required value="2.9" /></label>
               <label>Sepsis Indicator (0-1) <input name="sepsis_indicator" type="number" step="0.01" min="0" max="1" required value="0.7" /></label>
+              <label>Stress Level (0-10) <input name="stress_level" type="number" step="0.1" min="0" max="10" required value="7.4" /></label>
               <label>Diabetes
                 <select name="diabetes">
                   <option value="true">Yes</option>
@@ -332,7 +437,10 @@
                 </select>
               </label>
             </div>
-            <button type="submit">Run Risk Prediction</button>
+            <div class="action-row">
+              <button type="submit">Run Risk Prediction</button>
+              <button id="simulateButton" type="button" class="secondary-button">Run What-If Tool</button>
+            </div>
           </form>
         </article>
 
@@ -344,12 +452,123 @@
 
       <section class="grid">
         <article class="panel">
-          <h2>Risk Distribution (Recent)</h2>
+          <div class="panel-head">
+            <div>
+              <h2>Bulk Intake Console</h2>
+              <p class="panel-subtitle">Score multiple patients in one request and inspect partial failures.</p>
+            </div>
+            <span class="helper-text">Paste a JSON array of patient payloads for bulk scoring.</span>
+          </div>
+          <form id="batchForm">
+            <label for="batchPayload">Batch JSON</label>
+            <textarea id="batchPayload" rows="15" spellcheck="false">[
+  {
+    "patient_id": "P-7201",
+    "age": 71,
+    "systolic_bp": 168,
+    "diastolic_bp": 100,
+    "heart_rate": 118,
+    "oxygen_level": 89,
+    "cholesterol": 246,
+    "respiratory_rate": 26,
+    "temperature": 38.4,
+    "lactate": 3.1,
+    "sepsis_indicator": 0.74,
+    "stress_level": 8.3,
+    "diabetes": true,
+    "prior_heart_disease": true,
+    "chronic_kidney_disease": false,
+    "smoker": true
+  },
+  {
+    "patient_id": "P-7202",
+    "age": 52,
+    "systolic_bp": 132,
+    "diastolic_bp": 82,
+    "heart_rate": 86,
+    "oxygen_level": 96,
+    "cholesterol": 182,
+    "respiratory_rate": 17,
+    "temperature": 36.9,
+    "lactate": 1.3,
+    "sepsis_indicator": 0.14,
+    "stress_level": 3.1,
+    "diabetes": false,
+    "prior_heart_disease": false,
+    "chronic_kidney_disease": false,
+    "smoker": false
+  }
+]</textarea>
+            <div class="action-row">
+              <button type="submit">Run Batch Intake</button>
+            </div>
+          </form>
+          <div id="batchResult" class="tool-result">
+            <div class="placeholder">Submit a batch to view created items and validation errors.</div>
+          </div>
+        </article>
+
+        <article class="panel" id="simulationResult">
+          <h2>What-If Scenario Planner</h2>
+          <div class="placeholder">
+            Use the current patient form to compare likely outcomes after common stabilization steps.
+          </div>
+        </article>
+      </section>
+
+      <section class="section-banner">
+        <span class="eyebrow">Trajectory and Monitoring</span>
+        <h2>Trace patient movement, recent risk mix, and model validation</h2>
+        <p>
+          Once assessments begin to accumulate, this area becomes the main review surface for trend
+          tracking, cohort monitoring, and historical validation.
+        </p>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>Patient Trajectory Lookup</h2>
+              <p class="panel-subtitle">Inspect how one patient's risk score is evolving over time.</p>
+            </div>
+            <div class="timeline-toolbar">
+              <div class="api-url-wrap compact-input">
+                <label for="timelinePatientId">Patient ID</label>
+                <input id="timelinePatientId" type="text" value="P-2041" />
+              </div>
+              <button id="timelineSearchButton" type="button">Load Trend</button>
+            </div>
+          </div>
+          <p class="helper-text">
+            Pull the last few assessments for one patient to see whether risk is rising or settling.
+          </p>
+          <canvas id="patientTrendChart"></canvas>
+        </article>
+
+        <article class="panel" id="patientTrendSummary">
+          <h2>Patient Trend Summary</h2>
+          <div class="placeholder">Search for a patient once assessments exist.</div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>Recent Risk Mix</h2>
           <canvas id="riskChart"></canvas>
         </article>
         <article class="panel">
-          <h2>Recent Assessments</h2>
-          <div class="table-wrap">
+          <div class="panel-head">
+            <div>
+              <h2>Assessment Ledger</h2>
+              <p id="historyMeta" class="panel-subtitle">Loading stored assessment history.</p>
+            </div>
+            <div class="timeline-toolbar tight-toolbar history-toolbar">
+              <span id="historySyncText" class="helper-text">Ledger sync pending.</span>
+              <button id="historyRefreshButton" type="button" class="secondary-button toolbar-button">Refresh Ledger</button>
+            </div>
+          </div>
+          <div class="table-wrap ledger-scroll">
             <table id="historyTable">
               <thead>
                 <tr>
@@ -358,6 +577,7 @@
                   <th>Score</th>
                   <th>Level</th>
                   <th>ICU 24h</th>
+                  <th>Alert</th>
                 </tr>
               </thead>
               <tbody></tbody>
@@ -368,11 +588,11 @@
 
       <section class="grid">
         <article class="panel">
-          <h2>Model Accuracy Graph (Real Dataset)</h2>
+          <h2>Validation Accuracy</h2>
           <canvas id="accuracyChart"></canvas>
         </article>
         <article class="panel">
-          <h2>Real Dataset Model Benchmark</h2>
+          <h2>Benchmark Registry</h2>
           <p id="datasetMeta" class="placeholder">Loading benchmark...</p>
           <div class="table-wrap">
             <table id="benchmarkTable">
@@ -391,7 +611,18 @@
           </div>
         </article>
       </section>
+
+      <section class="grid">
+        <article class="panel" id="modelInsights">
+          <h2>Model Governance</h2>
+          <div class="placeholder">Connect the backend to load thresholds and top feature importances.</div>
+        </article>
+        <article class="panel" id="auditFeed">
+          <h2>Audit Activity</h2>
+          <div class="placeholder">Connect with an admin API key to view recent audit events.</div>
+        </article>
+      </section>
     </main>
-    <script src="./app.js?v=20260306-2"></script>
+    <script src="./app.js?v=20260312-12"></script>
   </body>
 </html>

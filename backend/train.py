@@ -9,19 +9,19 @@ from app.services.training import train_and_save_model
 
 
 def main() -> None:
-    settings = Settings()
+    settings = Settings.as_dict()
     artifact = train_and_save_model(
-        model_path=Path(settings.MODEL_PATH),
-        random_state=settings.MODEL_RANDOM_STATE,
-        low_threshold=settings.RISK_LOW_THRESHOLD,
-        high_threshold=settings.RISK_HIGH_THRESHOLD,
-        dataset_size=settings.SYNTHETIC_DATASET_SIZE,
+        model_path=Path(str(settings["MODEL_PATH"])),
+        random_state=int(settings["MODEL_RANDOM_STATE"]),
+        low_threshold=float(settings["RISK_LOW_THRESHOLD"]),
+        high_threshold=float(settings["RISK_HIGH_THRESHOLD"]),
+        dataset_size=int(settings["SYNTHETIC_DATASET_SIZE"]),
     )
     benchmark = load_or_run_benchmark(
         {
-            "BENCHMARK_PATH": settings.BENCHMARK_PATH,
-            "REAL_DATASET_EXPORT_PATH": settings.REAL_DATASET_EXPORT_PATH,
-            "MODEL_RANDOM_STATE": settings.MODEL_RANDOM_STATE,
+            "BENCHMARK_PATH": settings["BENCHMARK_PATH"],
+            "REAL_DATASET_EXPORT_PATH": settings["REAL_DATASET_EXPORT_PATH"],
+            "MODEL_RANDOM_STATE": settings["MODEL_RANDOM_STATE"],
         },
         force_refresh=True,
     )

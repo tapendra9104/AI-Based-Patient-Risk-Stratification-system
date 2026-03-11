@@ -34,6 +34,15 @@ def generate_synthetic_dataset(
     temperature = np.clip(rng.normal(36.9, 0.9, size), 34.5, 41.5)
     lactate = np.clip(rng.normal(1.9, 1.2, size), 0.3, 8.5)
     sepsis_indicator = np.clip(rng.beta(2, 6, size), 0.0, 1.0)
+    stress_level = np.clip(
+        4.5
+        + 0.015 * (heart_rate - 84)
+        + 0.25 * np.maximum(0.0, 95 - oxygen_level)
+        + 1.10 * sepsis_indicator
+        + rng.normal(0.0, 1.4, size),
+        0.0,
+        10.0,
+    )
     diabetes = rng.binomial(1, 0.27, size)
     prior_heart_disease = rng.binomial(1, 0.20, size)
     chronic_kidney_disease = rng.binomial(1, 0.15, size)
@@ -50,6 +59,7 @@ def generate_synthetic_dataset(
         + 1.00 * (temperature - 37.0)
         + 0.70 * (lactate - 1.5)
         + 2.00 * sepsis_indicator
+        + 0.28 * (stress_level - 5.0)
         + 1.20 * diabetes
         + 1.35 * prior_heart_disease
         + 0.95 * chronic_kidney_disease
@@ -71,6 +81,7 @@ def generate_synthetic_dataset(
             "temperature": temperature,
             "lactate": lactate,
             "sepsis_indicator": sepsis_indicator,
+            "stress_level": stress_level,
             "diabetes": diabetes.astype(float),
             "prior_heart_disease": prior_heart_disease.astype(float),
             "chronic_kidney_disease": chronic_kidney_disease.astype(float),
@@ -107,7 +118,7 @@ def train_and_save_model(
                     min_samples_leaf=4,
                     class_weight="balanced",
                     random_state=random_state,
-                    n_jobs=-1,
+                    n_jobs=1,
                 ),
             ),
         ]

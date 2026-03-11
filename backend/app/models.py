@@ -3,6 +3,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 
 from .extensions import db
+from .time_utils import as_utc_isoformat
 
 
 class PatientAssessment(db.Model):
@@ -35,7 +36,7 @@ class PatientAssessment(db.Model):
             "icu_within_24h": self.icu_within_24h,
             "explanation": self.explanation,
             "alert_sent": self.alert_sent,
-            "created_at": self.created_at.isoformat(),
+            "created_at": as_utc_isoformat(self.created_at),
         }
 
 
@@ -71,5 +72,5 @@ class AuditEvent(db.Model):
             "status_code": self.status_code,
             "ip_address": self.ip_address,
             "details": self.details,
-            "created_at": self.created_at.isoformat(),
+            "created_at": as_utc_isoformat(self.created_at),
         }

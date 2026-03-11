@@ -15,6 +15,7 @@ FEATURE_ORDER = [
     "temperature",
     "lactate",
     "sepsis_indicator",
+    "stress_level",
     "diabetes",
     "prior_heart_disease",
     "chronic_kidney_disease",
@@ -38,6 +39,7 @@ REQUIRED_FIELDS = {
 }
 
 OPTIONAL_DEFAULTS = {
+    "stress_level": 5.0,
     "chronic_kidney_disease": False,
     "smoker": False,
 }
@@ -55,6 +57,7 @@ FIELD_RANGES = {
     "temperature": (30, 45),
     "lactate": (0, 20),
     "sepsis_indicator": (0, 1),
+    "stress_level": (0, 10),
 }
 
 
@@ -111,6 +114,7 @@ def normalize_patient_payload(payload: dict[str, Any]) -> dict[str, Any]:
         "temperature": _as_float(raw_features["temperature"], "temperature"),
         "lactate": _as_float(raw_features["lactate"], "lactate"),
         "sepsis_indicator": _as_float(raw_features["sepsis_indicator"], "sepsis_indicator"),
+        "stress_level": _as_float(raw_features["stress_level"], "stress_level"),
         "diabetes": float(_as_bool(raw_features["diabetes"], "diabetes")),
         "prior_heart_disease": float(
             _as_bool(raw_features["prior_heart_disease"], "prior_heart_disease")
