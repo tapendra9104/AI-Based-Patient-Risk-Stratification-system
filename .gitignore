@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment variables (contain secrets)
+.env
+!.env.example
+
+# Build output
+dist/
+build/
+
+# IDE files
+.vscode/
+.idea/
+.gemini/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Upload directory
+backend/uploads/
+
+# Trained model artifacts
+ai-service/*.pkl
+ai-service/*.faiss
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sentence transformers cache (downloaded at runtime)
+ai-service/.cache/

@@ -1,0 +1,61 @@
+CARDIOVASCULAR RISK FACTORS AND ASSESSMENT
+=============================================
+
+MAJOR CARDIOVASCULAR RISK FACTORS:
+1. Hypertension (High Blood Pressure)
+   - Most common modifiable risk factor
+   - Doubles cardiovascular risk for every 20/10 mmHg increase above 115/75
+   - Target: < 130/80 mmHg for most adults
+
+2. Diabetes Mellitus
+   - Increases cardiovascular risk 2-4x compared to non-diabetic individuals
+   - HbA1c above 7% indicates poor glycemic control
+   - Diabetic patients often have silent ischemia (no chest pain symptoms)
+
+3. Dyslipidemia (Abnormal Cholesterol)
+   - Total cholesterol > 240 mg/dL is high risk
+   - LDL ("bad" cholesterol) > 160 mg/dL increases risk
+   - HDL ("good" cholesterol) < 40 mg/dL is a risk factor
+   - Triglycerides > 200 mg/dL increases risk
+
+4. Smoking
+   - Increases cardiovascular risk by 2-4x
+   - Damages blood vessel lining and promotes plaque buildup
+   - Risk decreases within 1 year of quitting
+
+5. Obesity
+   - BMI > 30 increases cardiovascular risk
+   - Abdominal obesity (waist circumference) is especially dangerous
+   - Associated with insulin resistance and metabolic syndrome
+
+6. Physical Inactivity
+   - Sedentary lifestyle increases cardiovascular risk by 50%
+   - Recommended: 150 minutes of moderate exercise per week
+   - Even light walking reduces risk significantly
+
+7. Family History
+   - First-degree relative with premature CVD increases risk
+   - Premature CVD: Male < 55 years, Female < 65 years
+
+METABOLIC SYNDROME:
+Defined as having 3 or more of:
+- Waist circumference > 102 cm (men) or > 88 cm (women)
+- Triglycerides >= 150 mg/dL
+- HDL cholesterol < 40 mg/dL (men) or < 50 mg/dL (women)
+- Blood pressure >= 130/85 mmHg
+- Fasting glucose >= 100 mg/dL
+
+Metabolic syndrome increases cardiovascular risk 2x and diabetes risk 5x.
+
+CLINICAL DECISION GUIDELINES:
+- Low Risk (< 10% 10-year risk): Lifestyle modification, routine follow-up in 6-12 months
+- Moderate Risk (10-20% 10-year risk): Lifestyle modification plus consider pharmacotherapy, follow-up in 3-6 months
+- High Risk (> 20% 10-year risk): Aggressive treatment with medication, lifestyle changes, and close follow-up within 1-4 weeks
+
+EMERGENCY INDICATORS (Require Immediate Action):
+- Systolic BP > 180 or Diastolic BP > 120 with symptoms
+- Blood glucose > 400 mg/dL
+- Heart rate > 150 bpm at rest with symptoms
+- Chest pain radiating to left arm, jaw, or back
+- Sudden onset of neurological symptoms (speech difficulty, facial drooping)
+- Severe shortness of breath at rest

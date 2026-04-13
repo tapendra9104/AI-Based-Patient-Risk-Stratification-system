@@ -1,0 +1,41 @@
+DIABETES MELLITUS — COMPREHENSIVE RISK ASSESSMENT GUIDE
+=========================================================
+
+TYPE 1 DIABETES:
+- Autoimmune destruction of pancreatic beta cells
+- Typically presents in children and young adults (ages 4-14 most common)
+- Symptoms: polyuria, polydipsia, weight loss, fatigue, diabetic ketoacidosis (DKA)
+- Always requires insulin therapy
+- Risk of hypoglycemic events with insulin therapy
+
+TYPE 2 DIABETES:
+- Insulin resistance and progressive beta-cell dysfunction
+- Most common form (90-95% of all diabetes cases)
+- Often associated with obesity, physical inactivity, and family history
+- Can be managed with lifestyle changes, oral medications, and/or insulin
+- Diagnosis: Fasting glucose >= 126 mg/dL OR HbA1c >= 6.5% OR random glucose >= 200 mg/dL with symptoms
+
+DIABETIC EMERGENCIES:
+- Diabetic Ketoacidosis (DKA): Blood glucose > 250 mg/dL with ketonuria and metabolic acidosis. Life-threatening. Requires IV insulin drip, fluid resuscitation, and electrolyte replacement.
+- Hyperosmolar Hyperglycemic State (HHS): Blood glucose > 600 mg/dL with severe dehydration and altered consciousness. More common in elderly Type 2 patients. Mortality rate 5-20%.
+- Hypoglycemia: Blood glucose < 70 mg/dL. Symptoms: tremor, sweating, confusion, seizures. Treat with 15-20g fast-acting carbohydrate.
+
+CHRONIC COMPLICATIONS OF DIABETES:
+- Diabetic Retinopathy: Leading cause of blindness in working-age adults. Annual eye screening recommended.
+- Diabetic Nephropathy: Progressive kidney damage. Monitor urine albumin-to-creatinine ratio annually. Target BP < 130/80 mmHg.
+- Diabetic Neuropathy: Peripheral nerve damage causing tingling, numbness, pain in extremities. Foot examination essential at every visit.
+- Cardiovascular Disease: 2-4x increased risk of heart attack and stroke. Aggressive lipid and BP management required.
+
+GLUCOSE MONITORING TARGETS:
+- Pre-meal (fasting): 80-130 mg/dL
+- Post-meal (2 hours): < 180 mg/dL
+- Bedtime: 100-150 mg/dL
+- HbA1c Target: < 7.0% for most adults (< 8.0% for elderly with comorbidities)
+
+MEDICATION CLASSES FOR TYPE 2 DIABETES:
+- Metformin: First-line therapy. Reduces hepatic glucose production. Avoid in renal insufficiency (eGFR < 30).
+- Sulfonylureas: Stimulate insulin secretion. Risk of hypoglycemia and weight gain.
+- SGLT2 Inhibitors: Promote glucose excretion via urine. Cardiovascular and renal benefits. Risk of urinary tract infections.
+- GLP-1 Receptor Agonists: Enhance insulin secretion, reduce appetite. Weight loss benefit. Cardiovascular protection.
+- DPP-4 Inhibitors: Moderate glucose reduction. Weight-neutral. Generally well-tolerated.
+- Insulin: Required when oral medications fail to achieve targets. Types: rapid-acting, short-acting, intermediate, long-acting, premixed.

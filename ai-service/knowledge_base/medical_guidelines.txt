@@ -1,0 +1,54 @@
+MEDICAL RISK ASSESSMENT GUIDELINES
+===================================
+
+BLOOD PRESSURE CLASSIFICATION:
+- Normal: Systolic < 120 AND Diastolic < 80 mmHg
+- Elevated: Systolic 120-129 AND Diastolic < 80 mmHg
+- Hypertension Stage 1: Systolic 130-139 OR Diastolic 80-89 mmHg
+- Hypertension Stage 2: Systolic >= 140 OR Diastolic >= 90 mmHg
+- Hypertensive Crisis: Systolic > 180 AND/OR Diastolic > 120 mmHg (requires immediate medical attention)
+
+Uncontrolled hypertension significantly increases the risk of heart attack, stroke, kidney disease, and heart failure. Patients with systolic BP above 180 or diastolic above 120 require immediate emergency evaluation.
+
+BLOOD GLUCOSE LEVELS:
+- Normal (fasting): 70-99 mg/dL
+- Prediabetes (fasting): 100-125 mg/dL
+- Diabetes (fasting): >= 126 mg/dL
+- Normal (random): < 140 mg/dL
+- Prediabetes (random): 140-199 mg/dL
+- Diabetes (random): >= 200 mg/dL
+
+Persistently elevated glucose levels lead to diabetic complications including neuropathy, nephropathy, retinopathy, and cardiovascular disease. Glucose above 300 mg/dL may indicate diabetic ketoacidosis, which is a medical emergency.
+
+HEART RATE CLASSIFICATION:
+- Bradycardia: < 60 bpm (may be normal in athletes)
+- Normal resting: 60-100 bpm
+- Tachycardia: > 100 bpm
+- Dangerous tachycardia: > 150 bpm (requires immediate evaluation)
+
+Abnormal heart rates combined with symptoms like chest pain, shortness of breath, or dizziness significantly increase cardiovascular risk and require prompt medical evaluation.
+
+AGE-RELATED RISK FACTORS:
+- Ages 0-30: Generally lower cardiovascular risk unless other factors present
+- Ages 31-50: Moderate risk; lifestyle factors become more significant
+- Ages 51-65: Elevated risk; regular screening recommended
+- Ages 65+: High baseline risk; comorbidities are common and compound risk
+
+Risk increases with age due to natural vascular changes, accumulated damage from risk factors, and declining organ function. Age above 65 is an independent risk factor for cardiovascular events.
+
+COMBINED RISK FACTORS:
+When multiple risk factors are present simultaneously, the overall risk is multiplicative rather than additive. For example:
+- High BP + High Glucose + Age > 60 = Very High Risk
+- High BP + Normal Glucose + Age < 50 = Moderate Risk
+- Normal BP + High Glucose + Sedentary Lifestyle = Moderate Risk
+- High BP + High Glucose + Smoking + Family History = Critical Risk
+
+SYMPTOM-BASED RISK INDICATORS:
+- Chest pain (especially with exertion): High cardiovascular risk
+- Shortness of breath at rest: Indicates possible heart failure or pulmonary condition
+- Sudden severe headache: May indicate stroke or hypertensive emergency
+- Blurred vision with high BP: Target organ damage
+- Frequent urination with high glucose: Poorly controlled diabetes
+- Numbness or tingling in extremities: Peripheral neuropathy
+- Dizziness or fainting: May indicate cardiac arrhythmia or hypotension
+- Unexplained weight loss: May indicate uncontrolled diabetes or malignancy

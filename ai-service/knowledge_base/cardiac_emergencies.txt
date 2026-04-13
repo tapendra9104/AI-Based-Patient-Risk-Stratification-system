@@ -1,0 +1,55 @@
+CARDIAC EMERGENCY ASSESSMENT AND MANAGEMENT
+=============================================
+
+ACUTE CORONARY SYNDROME (ACS):
+- Unstable Angina: Chest pain at rest or with minimal exertion. No troponin elevation. ECG may show ST depression or T-wave inversion.
+- NSTEMI (Non-ST Elevation MI): Elevated troponin with chest pain. No ST elevation on ECG. Requires antiplatelet therapy, anticoagulation, and early invasive strategy.
+- STEMI (ST Elevation MI): ST elevation on ECG with chest pain. Requires emergent reperfusion therapy (PCI within 90 minutes or fibrinolysis within 30 minutes of first medical contact).
+
+CHEST PAIN — RED FLAGS:
+- Pain radiating to left arm, jaw, or back
+- Associated with diaphoresis (sweating), nausea, or dyspnea
+- Worse with exertion, relieved by rest or nitroglycerin
+- New onset in patient with multiple cardiovascular risk factors
+- Sudden tearing pain radiating to the back (consider aortic dissection)
+
+HEART FAILURE CLASSIFICATION (NYHA):
+- Class I: No symptoms with ordinary physical activity
+- Class II: Mild symptoms (fatigue, mild dyspnea) with ordinary activity
+- Class III: Marked limitation of physical activity. Comfortable at rest.
+- Class IV: Symptoms at rest. Any physical activity causes discomfort.
+
+HEART FAILURE SIGNS AND SYMPTOMS:
+- Dyspnea on exertion progressing to orthopnea and paroxysmal nocturnal dyspnea
+- Peripheral edema (ankle swelling)
+- Jugular venous distension
+- Pulmonary crackles (rales)
+- S3 gallop on cardiac auscultation
+- Weight gain from fluid retention
+- Reduced exercise tolerance and fatigue
+
+ARRHYTHMIA ASSESSMENT:
+- Atrial Fibrillation: Irregular irregular rhythm. Risk of stroke. CHA2DS2-VASc score determines anticoagulation need.
+- Ventricular Tachycardia: Wide complex tachycardia. Can be hemodynamically unstable. May require cardioversion.
+- Bradycardia: Heart rate < 60 bpm. Symptomatic bradycardia requires atropine or temporary pacing.
+- Supraventricular Tachycardia: Heart rate 150-220 bpm. Regular narrow complex. Vagal maneuvers or adenosine may terminate.
+
+BLOOD PRESSURE CRISES:
+- Hypertensive Urgency: BP > 180/120 mmHg WITHOUT end-organ damage. Gradual reduction over 24-48 hours with oral medications.
+- Hypertensive Emergency: BP > 180/120 mmHg WITH end-organ damage (encephalopathy, retinal hemorrhage, acute kidney injury, aortic dissection). Requires IV medications in ICU setting with 25% BP reduction in first hour.
+
+CARDIAC BIOMARKERS AND INTERPRETATION:
+- Troponin I/T: Gold standard for myocardial injury. Rises 3-6 hours after onset, peaks 12-24 hours. Serial measurements at 0, 3, and 6 hours.
+- BNP/NT-proBNP: Elevated in heart failure. BNP > 100 pg/mL or NT-proBNP > 300 pg/mL suggests heart failure.
+- D-dimer: Elevated in pulmonary embolism, deep vein thrombosis, aortic dissection. High sensitivity but low specificity.
+- CK-MB: Less specific than troponin. May be useful for detecting reinfarction.
+
+STROKE ASSESSMENT (BE-FAST):
+- Balance: Sudden loss of balance or coordination
+- Eyes: Sudden vision changes in one or both eyes
+- Face: Facial drooping on one side
+- Arms: Arm weakness or numbness (drift test)
+- Speech: Slurred speech or difficulty understanding
+- Time: Time to call emergency services (every minute counts)
+- Ischemic stroke: Thrombolysis (tPA) within 4.5 hours of symptom onset. Thrombectomy up to 24 hours in selected patients.
+- Hemorrhagic stroke: Blood pressure control, reversal of anticoagulation, neurosurgical consultation.

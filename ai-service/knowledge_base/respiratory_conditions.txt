@@ -1,0 +1,53 @@
+RESPIRATORY CONDITIONS AND RISK ASSESSMENT
+=============================================
+
+CHRONIC OBSTRUCTIVE PULMONARY DISEASE (COPD):
+- Progressive airflow limitation that is not fully reversible
+- Primary cause: smoking (85-90% of cases)
+- Symptoms: chronic cough, sputum production, progressive dyspnea
+- Diagnosis: Spirometry showing FEV1/FVC ratio < 0.70 post-bronchodilator
+
+COPD SEVERITY CLASSIFICATION (GOLD):
+- GOLD 1 (Mild): FEV1 >= 80% predicted
+- GOLD 2 (Moderate): 50% <= FEV1 < 80% predicted
+- GOLD 3 (Severe): 30% <= FEV1 < 50% predicted
+- GOLD 4 (Very Severe): FEV1 < 30% predicted
+
+COPD EXACERBATION:
+- Acute worsening of respiratory symptoms beyond normal day-to-day variation
+- Common triggers: respiratory infections, air pollution, non-compliance with medications
+- Treatment: bronchodilators, systemic corticosteroids, antibiotics if purulent sputum
+- Severe exacerbation requires hospitalization: respiratory rate > 25, oxygen saturation < 90%, confusion
+
+ASTHMA ASSESSMENT:
+- Reversible airway obstruction with bronchial hyperresponsiveness
+- Symptoms: wheezing, cough, chest tightness, shortness of breath (worse at night or early morning)
+- Triggers: allergens, exercise, cold air, respiratory infections, stress
+- Severity: intermittent, mild persistent, moderate persistent, severe persistent
+- Peak flow monitoring: < 50% of personal best suggests severe exacerbation
+
+PNEUMONIA RISK FACTORS:
+- Age > 65 years: 5-10x higher incidence and mortality
+- Immunosuppression: HIV, transplant, chemotherapy, chronic corticosteroid use
+- Chronic lung disease: COPD, bronchiectasis, cystic fibrosis
+- Smoking and alcohol abuse
+- Aspiration risk: dysphagia, altered consciousness, GERD
+
+PNEUMONIA SEVERITY (CURB-65 Score):
+- Confusion: new mental confusion
+- Urea: > 7 mmol/L (BUN > 19 mg/dL)
+- Respiratory rate: >= 30 breaths/minute
+- Blood pressure: systolic < 90 OR diastolic <= 60 mmHg
+- Age >= 65 years
+- Score 0-1: Outpatient treatment
+- Score 2: Consider short hospitalization
+- Score 3-5: Hospitalization required (4-5: consider ICU)
+
+PULMONARY EMBOLISM (PE):
+- Blood clot in pulmonary arteries. Often originates from deep vein thrombosis (DVT).
+- Symptoms: sudden dyspnea, pleuritic chest pain, tachycardia, hemoptysis
+- Risk factors: recent surgery, immobilization, cancer, pregnancy, oral contraceptives, previous VTE
+- Wells Score helps calculate pre-test probability
+- Diagnosis: CT pulmonary angiography (gold standard), D-dimer (to rule out in low-probability patients)
+- Treatment: anticoagulation (heparin bridge to warfarin or direct oral anticoagulants)
+- Massive PE with hemodynamic instability: systemic thrombolysis or surgical embolectomy

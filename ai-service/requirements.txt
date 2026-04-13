@@ -1,0 +1,35 @@
+# ============================================
+# AI Patient Risk Stratification — AI Service
+# Python Dependencies
+# ============================================
+
+# Web framework
+fastapi>=0.109.0
+uvicorn>=0.27.0
+
+# Google Gemini AI (free tier available)
+google-generativeai>=0.8.0
+
+# Vector Database for RAG
+faiss-cpu>=1.7.4
+
+# Embeddings (lightweight model for local embeddings)
+sentence-transformers>=2.3.1
+
+# Data validation
+pydantic>=2.5.3
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# File upload handling
+python-multipart>=0.0.6
+
+# HTTP requests
+requests>=2.31.0
+
+# NumPy (required by FAISS)
+numpy>=1.26.0
+
+# OpenAI (alternative LLM provider)
+openai>=1.12.0
