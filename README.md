@@ -29,6 +29,50 @@
 
 ---
 
+## 📸 Screenshots
+
+### 🌑 Dark Mode
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/01-home-dark.png" alt="Home - Patient Analysis Form (Dark)" />
+      <p align="center"><strong>Home — Patient Analysis Form</strong></p>
+    </td>
+    <td width="50%">
+      <img src="screenshots/02-dashboard-dark.png" alt="Dashboard - Charts & Stats (Dark)" />
+      <p align="center"><strong>Dashboard — Charts & Stats</strong></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/03-history-dark.png" alt="Patient History (Dark)" />
+      <p align="center"><strong>Patient History — Search & Filter</strong></p>
+    </td>
+    <td width="50%">
+      <img src="screenshots/04-patient-detail-dark.png" alt="Patient Detail - AI Assessment (Dark)" />
+      <p align="center"><strong>Patient Detail — AI Risk Assessment</strong></p>
+    </td>
+  </tr>
+</table>
+
+### ☀️ Light Mode
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/05-history-light.png" alt="Patient History (Light)" />
+      <p align="center"><strong>Patient History — Light Mode</strong></p>
+    </td>
+    <td width="50%">
+      <img src="screenshots/06-patient-detail-light.png" alt="Patient Detail (Light)" />
+      <p align="center"><strong>Patient Detail — Light Mode</strong></p>
+    </td>
+  </tr>
+</table>
+
+---
+
 ## ✨ Features
 
 ### 🔬 AI-Powered Risk Analysis
@@ -144,8 +188,8 @@
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/AI-Based-Patient-Risk-Stratification.git
-cd AI-Based-Patient-Risk-Stratification
+git clone https://github.com/tapendra9104/AI-Based-Patient-Risk-Stratification-system.git
+cd AI-Based-Patient-Risk-Stratification-system
 
 # Backend dependencies
 cd backend && npm install && cd ..
