@@ -1,12 +1,4 @@
-# ============================================
-# RENDER BLUEPRINT — Auto-deploy all 3 services
-# ============================================
-# Push this repo to GitHub, then go to:
-# https://dashboard.render.com/blueprints → New Blueprint Instance
-# Connect your GitHub repo and Render deploys everything automatically.
-
 services:
-  # ---- 1. Node.js Backend (Express API Gateway) ----
   - type: web
     name: riskai-backend
     runtime: node
@@ -19,20 +11,15 @@ services:
       - key: NODE_ENV
         value: production
       - key: MONGODB_URI
-        sync: false  # You'll set this manually (MongoDB Atlas connection string)
+        sync: false
       - key: AI_SERVICE_URL
-        fromService:
-          name: riskai-ai-service
-          type: web
-          property: hostport
-          # This auto-links to the AI service URL
+        sync: false
       - key: JWT_SECRET
-        generateValue: true  # Render auto-generates a secure random secret
+        generateValue: true
       - key: AUTH_ENABLED
         value: "false"
     healthCheckPath: /api/health
 
-  # ---- 2. Python AI Service (FastAPI + RAG) ----
   - type: web
     name: riskai-ai-service
     runtime: python
@@ -43,7 +30,7 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: GEMINI_API_KEY
-        sync: false  # You'll set this manually
+        sync: false
       - key: LLM_PROVIDER
         value: gemini
       - key: EMBEDDING_MODEL
@@ -52,7 +39,6 @@ services:
         value: "1"
     healthCheckPath: /health
 
-  # ---- 3. React Frontend (Static Site) ----
   - type: web
     name: riskai-frontend
     runtime: static
@@ -71,7 +57,4 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        fromService:
-          name: riskai-backend
-          type: web
-          property: host
+        sync: false
