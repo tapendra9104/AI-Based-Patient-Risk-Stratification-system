@@ -40,7 +40,6 @@ services:
   - type: web
     name: riskai-frontend
     runtime: static
-    region: oregon
     plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
