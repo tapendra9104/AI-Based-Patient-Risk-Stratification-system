@@ -19,7 +19,6 @@ services:
       - key: AUTH_ENABLED
         value: "false"
     healthCheckPath: /api/health
-
   - type: web
     name: riskai-ai-service
     runtime: python
@@ -38,7 +37,6 @@ services:
       - key: PYTHONUNBUFFERED
         value: "1"
     healthCheckPath: /health
-
   - type: web
     name: riskai-frontend
     runtime: static
