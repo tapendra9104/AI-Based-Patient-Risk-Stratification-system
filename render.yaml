@@ -37,8 +37,9 @@ services:
       - key: PYTHONUNBUFFERED
         value: "1"
     healthCheckPath: /health
-  - type: static
+  - type: web
     name: riskai-frontend
+    runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
