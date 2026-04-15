@@ -65,7 +65,9 @@ async def lifespan(app: FastAPI):
 
     # Initialize the RAG system
     logger.info("🚀 Starting up...")
-    rag_service.initialize()
+        import asyncio
+      asyncio.create_task(asyncio.to_thread(rag_service.initialize))
+
 
     # Check which LLM provider is configured
     llm_provider = os.getenv("LLM_PROVIDER", "gemini")
