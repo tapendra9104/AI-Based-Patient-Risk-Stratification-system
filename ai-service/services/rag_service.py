@@ -3,21 +3,34 @@ RAG service for loading the local knowledge base and retrieving context.
 """
 
 import logging
+import math
 import os
+import re
+from collections import Counter
 from threading import Lock, Thread
 from typing import List
 
 logger = logging.getLogger(__name__)
 
+TOKEN_PATTERN = re.compile(r"[a-z0-9]{2,}")
+
 
 class RAGService:
-    """Manage the medical knowledge base and semantic retrieval."""
+    """
+    Manage the medical knowledge base and lightweight lexical retrieval.
+
+    The original embedding-based retriever pulled in Torch, Transformers, and
+    FAISS, which is too heavy for Render's free 512 MB instances. This version
+    keeps retrieval local and lightweight by indexing token frequencies.
+    """
 
     def __init__(self):
         self.is_initialized = False
         self.documents: List[str] = []
-        self.embeddings_model = None
-        self.index = None
+        self.document_term_counts: List[Counter[str]] = []
+        self.document_lengths: List[int] = []
+        self.inverse_document_frequency: dict[str, float] = {}
+        self.average_document_length = 0.0
         self.last_error = None
         self._init_lock = Lock()
         self._init_thread = None
@@ -41,8 +54,8 @@ class RAGService:
         """
         Start RAG initialization without blocking app startup.
 
-        This lets the service return 200 from /health quickly on platforms such
-        as Render while the embedding model loads in the background.
+        Render health checks only need the process to come up, so background
+        warm-up keeps the service responsive even on free-tier instances.
         """
         if self.is_initialized:
             return False
@@ -58,19 +71,21 @@ class RAGService:
         return True
 
     def initialize(self):
-        """Load documents, build embeddings, and create the FAISS index."""
+        """Load documents and build a lightweight lexical index."""
         with self._init_lock:
             if self.is_initialized:
                 return
 
             self.last_error = None
             self.documents = []
-            self.embeddings_model = None
-            self.index = None
+            self.document_term_counts = []
+            self.document_lengths = []
+            self.inverse_document_frequency = {}
+            self.average_document_length = 0.0
             self.is_initialized = False
 
             try:
-                logger.info("Initializing RAG system...")
+                logger.info("Initializing lightweight RAG index...")
 
                 self.documents = self._load_documents()
                 if not self.documents:
@@ -78,39 +93,27 @@ class RAGService:
                     logger.warning(self.last_error)
                     return
 
-                logger.info("Loaded %s text chunks", len(self.documents))
+                document_frequency: Counter[str] = Counter()
+                for document in self.documents:
+                    tokens = self._tokenize(document)
+                    term_counts = Counter(tokens)
+                    self.document_term_counts.append(term_counts)
+                    self.document_lengths.append(sum(term_counts.values()))
+                    document_frequency.update(term_counts.keys())
 
-                from sentence_transformers import SentenceTransformer
-
-                model_name = os.getenv("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
-                logger.info("Loading embedding model: %s", model_name)
-                self.embeddings_model = SentenceTransformer(model_name)
-
-                logger.info("Creating embeddings for medical documents...")
-                document_embeddings = self.embeddings_model.encode(
-                    self.documents,
-                    show_progress_bar=True,
-                    convert_to_numpy=True,
+                document_count = len(self.documents)
+                self.average_document_length = (
+                    sum(self.document_lengths) / document_count if document_count else 0.0
                 )
-
-                import faiss
-                import numpy as np
-
-                dimension = document_embeddings.shape[1]
-                self.index = faiss.IndexFlatL2(dimension)
-                self.index.add(document_embeddings.astype(np.float32))
+                self.inverse_document_frequency = {
+                    term: math.log((document_count + 1) / (frequency + 0.5)) + 1.0
+                    for term, frequency in document_frequency.items()
+                }
 
                 self.is_initialized = True
                 logger.info(
-                    "RAG system ready. Index contains %s vectors",
-                    self.index.ntotal,
-                )
-
-            except ImportError as import_error:
-                self.last_error = str(import_error)
-                logger.warning("RAG dependencies not installed: %s", import_error)
-                logger.warning(
-                    "Install with: pip install sentence-transformers faiss-cpu"
+                    "Lightweight RAG index ready with %s chunks",
+                    document_count,
                 )
 
             except Exception as error:
@@ -149,42 +152,68 @@ class RAGService:
 
         return chunks
 
+    def _tokenize(self, text: str) -> List[str]:
+        """Split text into normalized tokens."""
+        return TOKEN_PATTERN.findall(text.lower())
+
+    def _score_document(self, query_terms: Counter[str], index: int) -> float:
+        """Compute a lightweight BM25-style relevance score."""
+        doc_terms = self.document_term_counts[index]
+        doc_length = max(self.document_lengths[index], 1)
+        average_length = max(self.average_document_length, 1.0)
+        score = 0.0
+
+        for term, query_count in query_terms.items():
+            term_frequency = doc_terms.get(term, 0)
+            if term_frequency == 0:
+                continue
+
+            idf = self.inverse_document_frequency.get(term, 0.0)
+            numerator = term_frequency * 2.2
+            denominator = term_frequency + 1.2 * (
+                1 - 0.75 + 0.75 * (doc_length / average_length)
+            )
+            score += idf * (numerator / denominator) * query_count
+
+        return score
+
     def retrieve_context(self, query: str, top_k: int = 3) -> str:
         """Find the most relevant knowledge-base chunks for a query."""
         if not self.is_initialized:
             if self.get_status() == "not_initialized":
                 self.start_background_initialization()
-            logger.info("RAG not ready yet (%s); returning empty context", self.get_status())
-            return ""
-
-        try:
-            import numpy as np
-
-            query_embedding = self.embeddings_model.encode([query])
-            query_vector = np.array(query_embedding).astype(np.float32)
-            distances, indices = self.index.search(query_vector, top_k)
-
-            relevant_chunks = []
-            for i, idx in enumerate(indices[0]):
-                if idx < len(self.documents):
-                    relevant_chunks.append(self.documents[idx])
-                    logger.debug(
-                        "RAG match #%s (distance: %.2f)",
-                        i + 1,
-                        distances[0][i],
-                    )
-
-            context = "\n\n---\n\n".join(relevant_chunks)
             logger.info(
-                "RAG retrieved %s relevant chunks (%s chars)",
-                len(relevant_chunks),
-                len(context),
+                "RAG not ready yet (%s); returning empty context",
+                self.get_status(),
             )
-            return context
-
-        except Exception as error:
-            logger.error("RAG retrieval failed: %s", error)
             return ""
+
+        query_terms = Counter(self._tokenize(query))
+        if not query_terms:
+            return ""
+
+        scored_documents = []
+        for index in range(len(self.documents)):
+            score = self._score_document(query_terms, index)
+            if score > 0:
+                scored_documents.append((score, index))
+
+        if not scored_documents:
+            logger.info("RAG found no lexical matches for query")
+            return ""
+
+        scored_documents.sort(reverse=True)
+        relevant_chunks = [
+            self.documents[index]
+            for _, index in scored_documents[:top_k]
+        ]
+        context = "\n\n---\n\n".join(relevant_chunks)
+        logger.info(
+            "RAG retrieved %s relevant chunks (%s chars)",
+            len(relevant_chunks),
+            len(context),
+        )
+        return context
 
 
 rag_service = RAGService()
