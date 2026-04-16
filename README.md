@@ -29,6 +29,14 @@
 
 ---
 
+## Live Demo
+
+- Main website: https://riskai-frontend.onrender.com
+- Backend health: https://riskai-backend-r6rw.onrender.com/api/health
+- AI service health: https://riskai-ai-service.onrender.com/health
+
+---
+
 ## 📸 Screenshots
 
 ### 🌑 Dark Mode
@@ -239,6 +247,11 @@ Navigate to **http://localhost:3000** 🎉
 ### Deploy to Render (Recommended)
 
 This project includes a `render.yaml` blueprint for **one-click deployment**:
+
+**Live deployment:**
+- Frontend: https://riskai-frontend.onrender.com
+- Backend: https://riskai-backend-r6rw.onrender.com
+- AI Service: https://riskai-ai-service.onrender.com
 
 1. **Push to GitHub** (this repo)
 2. **Create a free [MongoDB Atlas](https://cloud.mongodb.com) cluster** → get connection string
